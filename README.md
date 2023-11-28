@@ -35,11 +35,14 @@ Number Patterns are created with a mix of integers and operators. In most cases 
 | <=       | Less Than or Equal to    | <=3 => [0, 1, 2, 3]          |
 | %        | Modulo                   | %2 => [0, 2, 4, 6, 8, 10...] |
 
+
 ### Inclusion Single Patterns
 
 Patterns can contain just an integer or an integer-selector combination. A minimum and maximum number must be set to avoid Infinity.
 
-**Single Number**
+-------------
+
+#### Single Number
 
 A single integer is provided and returned.
 
@@ -51,7 +54,9 @@ Returns:
 "4" returns `[4]`
 "!2" returns all numbers between the min and max except `[2]`
 
-**Range**
+-------------
+
+#### Range
 
 Two numbers are provided seperated by a colon ":". Range cannot contain any other operators, only integers and "not"
 
@@ -62,7 +67,9 @@ Returns:
 "2:4" returns `[2, 3, 4]`
 "!2:4" returns all numbers between the min and max except `[2, 3, 4]`
 
-**Modulo**
+-------------
+
+#### Modulo
 
 A percentage sign (modulo) prefixes an integer. This returns numbers divisible by the given integer.
 
@@ -73,7 +80,9 @@ Returns:
 "%2" returns all integers divisible by 2 `[2, 4, 6, 8...]`
 "!%2" returns all integers not divisible by 2 `[1, 3, 5, 7...]`
 
-**Greater Than**
+-------------
+
+#### Greater Than
 
 A greater than symbol prefixes an integer. This returns all numbers after the integer provided until the max
 
@@ -84,7 +93,9 @@ Returns:
 ">2" returns all integers after 2 `[3, 4, 5, 6...]`
 "!>2" returns all integers before and including 2 `[0, 1, 2]`
 
-**Greater Than or Equal to**
+-------------
+
+#### Greater Than or Equal to
 
 A greater than and equal symbol prefixes an integer. This returns all numbers after including the integer provided
 
@@ -95,7 +106,9 @@ Returns:
 ">=2" returns all integers after and including 2 `[2, 3, 4, 5, 6...]`
 "!>=2" returns all integers before 2 `[0, 1]`
 
-**Less Than**
+-------------
+
+#### Less Than
 
 A less than symbol prefixes an integer. This returns all numbers before the integer provided until the min value
 
@@ -106,7 +119,9 @@ Returns:
 "<2" returns all integers before 2 `[0, 1]`
 "!<2" returns all integers after and including 2 `[1, 2, 3, 4...]`
 
-**Less Than or Equal to**
+-------------
+
+#### Less Than or Equal to
 
 A less than and equal symbol prefixes an integer. This returns all integers before and including the integer provided
 
@@ -116,6 +131,8 @@ Invalid Pattern: `>2=`, `2>=`
 Returns:
 "<=2" returns all integers before and including 2 `[0, 1, 2]`
 "!<=2" returns all integers after 2 `[3, 4, 5, 6...]`
+
+-------------
 
 ### Inclusion Multi-Patterns
 
