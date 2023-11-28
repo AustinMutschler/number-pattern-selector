@@ -64,9 +64,9 @@ This is a pattern validator that returns true if the string pattern passed in is
 
 Arguments:
 
-| Argument | Description            | Type               |
-| -------- | ---------------------- | ------------------ |
-| pattern  | The NPS pattern        | string             |
+| Argument | Description     | Type   |
+| -------- | --------------- | ------ |
+| pattern  | The NPS pattern | string |
 
 Ouput: boolean
 
@@ -81,6 +81,7 @@ const pattern '1:5';
 const selectedNumbers = validNumberPattern(pattern); // Ouput: true
 ```
 
+---
 
 ## Sample Use Cases
 
