@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": false,
+    "declaration": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "strict": true,
+    "types": ["node", "jest"],
+    "removeComments": true
+  },
+  "exclude": ["coverage", "dist", "node_modules", "jest.config.js", "**/*.test.ts"],
+}

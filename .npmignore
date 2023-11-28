@@ -1,0 +1,9 @@
+# Ignore all files and directories
+*
+
+# Include essential files
+!package.json
+!README.md
+
+# Include the dist directory and its contents
+!dist/**
