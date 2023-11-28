@@ -6,7 +6,81 @@ NPS is a standardized number selector pattern. It allows for returning numbers b
 
 ## Usage
 
-TODO: Write how to use the functions
+### Import
+
+#### ESM
+
+```ts
+import {
+  numberPatternParser,
+  validNumberPattern,
+} from "number-pattern-selector";
+```
+
+#### CommonJS (Not supported yet)
+
+```ts
+const {
+  numberPatternParser,
+  validNumberPattern,
+} = require("number-pattern-selector");
+```
+
+#### numberPatternParser
+
+This is the main parser function. It takes in an NPS pattern and optionally an options object.
+
+Arguments:
+
+| Argument | Description            | Type               |
+| -------- | ---------------------- | ------------------ |
+| pattern  | The NPS pattern        | string             |
+| options  | Options for the parser | object (see below) |
+
+Ouput: number[] (Array of Integers)
+
+Options:
+
+| Option        | Description                        | Type   | Default Value |
+| ------------- | ---------------------------------- | ------ | ------------- |
+| min           | The minimum number for the parser  | number | 0             |
+| max           | The maximum number for the parser  | number | 10            |
+| rangeSelector | The delimiter used for Range (1:5) | string | ":"           |
+
+**Example:**
+
+```ts
+import {
+  numberPatternParser,
+} from "number-pattern-selector";
+
+const pattern '1:5';
+const selectedNumbers = numberPatternParser(pattern); // Ouput: [1, 2, 3, 4, 5]
+```
+
+#### validNumberPattern
+
+This is a pattern validator that returns true if the string pattern passed in is valid. Note: this function does not currently support options.rangeSelector which may lead to false negatives.
+
+Arguments:
+
+| Argument | Description            | Type               |
+| -------- | ---------------------- | ------------------ |
+| pattern  | The NPS pattern        | string             |
+
+Ouput: boolean
+
+**Example:**
+
+```ts
+import {
+  validNumberPattern,
+} from "number-pattern-selector";
+
+const pattern '1:5';
+const selectedNumbers = validNumberPattern(pattern); // Ouput: true
+```
+
 
 ## Sample Use Cases
 
@@ -35,12 +109,11 @@ Number Patterns are created with a mix of integers and operators. In most cases 
 | <=       | Less Than or Equal to    | <=3 => [0, 1, 2, 3]          |
 | %        | Modulo                   | %2 => [0, 2, 4, 6, 8, 10...] |
 
-
 ### Inclusion Single Patterns
 
 Patterns can contain just an integer or an integer-selector combination. A minimum and maximum number must be set to avoid Infinity.
 
--------------
+---
 
 #### Single Number
 
@@ -54,7 +127,7 @@ Returns:
 "4" returns `[4]`
 "!2" returns all numbers between the min and max except `[2]`
 
--------------
+---
 
 #### Range
 
@@ -67,7 +140,7 @@ Returns:
 "2:4" returns `[2, 3, 4]`
 "!2:4" returns all numbers between the min and max except `[2, 3, 4]`
 
--------------
+---
 
 #### Modulo
 
@@ -80,7 +153,7 @@ Returns:
 "%2" returns all integers divisible by 2 `[2, 4, 6, 8...]`
 "!%2" returns all integers not divisible by 2 `[1, 3, 5, 7...]`
 
--------------
+---
 
 #### Greater Than
 
@@ -93,7 +166,7 @@ Returns:
 ">2" returns all integers after 2 `[3, 4, 5, 6...]`
 "!>2" returns all integers before and including 2 `[0, 1, 2]`
 
--------------
+---
 
 #### Greater Than or Equal to
 
@@ -106,7 +179,7 @@ Returns:
 ">=2" returns all integers after and including 2 `[2, 3, 4, 5, 6...]`
 "!>=2" returns all integers before 2 `[0, 1]`
 
--------------
+---
 
 #### Less Than
 
@@ -119,7 +192,7 @@ Returns:
 "<2" returns all integers before 2 `[0, 1]`
 "!<2" returns all integers after and including 2 `[1, 2, 3, 4...]`
 
--------------
+---
 
 #### Less Than or Equal to
 
@@ -132,7 +205,7 @@ Returns:
 "<=2" returns all integers before and including 2 `[0, 1, 2]`
 "!<=2" returns all integers after 2 `[3, 4, 5, 6...]`
 
--------------
+---
 
 ### Inclusion Multi-Patterns
 
@@ -164,4 +237,4 @@ Example:
 
 ## Contributing
 
-Coming soon
+Feel free to make a PR for any improvements. For now, request a review from AustinMutschler.
