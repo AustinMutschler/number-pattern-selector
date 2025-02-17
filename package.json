@@ -1,6 +1,6 @@
 {
   "name": "number-pattern-selector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "NPS is a standardized number selector pattern. It allows for returning numbers based on a text pattern.",
   "author": "Austin Mutschler",
   "license": "MIT",
