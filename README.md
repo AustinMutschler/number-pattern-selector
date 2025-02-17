@@ -46,6 +46,7 @@ Options:
 | min           | The minimum number for the parser  | number | 0             |
 | max           | The maximum number for the parser  | number | 10            |
 | rangeSelector | The delimiter used for Range (1:5) | string | ":"           |
+| output        | The output type                    | string | "number"      |
 
 **Example:**
 

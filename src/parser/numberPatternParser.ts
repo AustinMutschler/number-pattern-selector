@@ -1,18 +1,17 @@
-import {
-  Pattern,
-  PatternParserOptions,
-} from "../index.d.js";
+import { Pattern, PatternParserOptions } from "../index.d.js";
 
 export interface InternalPatternParserOptions {
   min: number;
   max: number;
   rangeSelector: string;
+  output?: string;
 }
 
 const DEFAULT_PATTERN_PARSER_OPTIONS: InternalPatternParserOptions = {
   min: 0,
   max: 10,
   rangeSelector: ":",
+  output: "number",
 };
 
 function parsePattern(
@@ -117,8 +116,11 @@ function parsePattern(
 export default function numberPatternParser(
   patternString: string,
   options: PatternParserOptions = DEFAULT_PATTERN_PARSER_OPTIONS
-): number[] {
-  const finalOptions: InternalPatternParserOptions = { ...DEFAULT_PATTERN_PARSER_OPTIONS, ...options };
+): number[] | string[] {
+  const finalOptions: InternalPatternParserOptions = {
+    ...DEFAULT_PATTERN_PARSER_OPTIONS,
+    ...options,
+  };
   // Normalize the pattern string
   patternString = patternString.replace(/\s/g, "");
 
@@ -152,6 +154,14 @@ export default function numberPatternParser(
   exclusionPatterns.forEach((pattern: Pattern) => {
     numbers = numbers.filter((number) => !pattern.values.includes(number));
   });
+
+  // If the output is a string, return the numbers as a string
+  if (finalOptions.output === "string") {
+    const stringNumbers = numbers.map((number) => number.toString());
+    return Array.from(new Set(stringNumbers)).sort(
+      (a: string, b: string) => Number(a) - Number(b)
+    );
+  }
 
   // Remove duplicates and sort the numbers
   return Array.from(new Set(numbers)).sort((a: number, b: number) => a - b);

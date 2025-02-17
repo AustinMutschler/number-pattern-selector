@@ -7,4 +7,5 @@ export interface PatternParserOptions {
   min?: number;
   max?: number;
   rangeSelector?: string;
+  output?: string;
 }
