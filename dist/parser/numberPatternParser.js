@@ -2,6 +2,7 @@ const DEFAULT_PATTERN_PARSER_OPTIONS = {
     min: 0,
     max: 10,
     rangeSelector: ":",
+    output: "number",
 };
 function parsePattern(patternString, options) {
     const pattern = {
@@ -68,7 +69,10 @@ function parsePattern(patternString, options) {
     return pattern;
 }
 export default function numberPatternParser(patternString, options = DEFAULT_PATTERN_PARSER_OPTIONS) {
-    const finalOptions = { ...DEFAULT_PATTERN_PARSER_OPTIONS, ...options };
+    const finalOptions = {
+        ...DEFAULT_PATTERN_PARSER_OPTIONS,
+        ...options,
+    };
     patternString = patternString.replace(/\s/g, "");
     const patternStrings = patternString.split(",");
     const patterns = patternStrings.map((patternString) => parsePattern(patternString, finalOptions));
@@ -88,5 +92,9 @@ export default function numberPatternParser(patternString, options = DEFAULT_PAT
     exclusionPatterns.forEach((pattern) => {
         numbers = numbers.filter((number) => !pattern.values.includes(number));
     });
+    if (finalOptions.output === "string") {
+        const stringNumbers = numbers.map((number) => number.toString());
+        return Array.from(new Set(stringNumbers)).sort((a, b) => Number(a) - Number(b));
+    }
     return Array.from(new Set(numbers)).sort((a, b) => a - b);
 }
